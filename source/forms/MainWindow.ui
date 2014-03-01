@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>613</width>
+    <height>605</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>EbonHack</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGraphicsView" name="graphicsView"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="mainMenuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>613</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <addaction name="actionCompile_Options"/>
+    <addaction name="actionExplore_Mode"/>
+    <addaction name="actionHistory"/>
+    <addaction name="actionOptions"/>
+    <addaction name="actionRedraw_Screen"/>
+    <addaction name="actionSuicide"/>
+    <addaction name="actionVersion"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_And_Exit"/>
+   </widget>
+   <widget class="QMenu" name="menuGear">
+    <property name="title">
+     <string>Gear</string>
+    </property>
+    <addaction name="actionApparel_Off"/>
+    <addaction name="actionExchange_Weapons"/>
+    <addaction name="actionLoad_Quiver"/>
+    <addaction name="actionPut_On_Accessory"/>
+    <addaction name="actionRemove_Accessory"/>
+    <addaction name="actionTake_Off_Armor"/>
+    <addaction name="actionTwo_Weapon_Combat"/>
+    <addaction name="actionWear_Armor"/>
+    <addaction name="actionWield_Weapon"/>
+   </widget>
+   <widget class="QMenu" name="menuAction">
+    <property name="title">
+     <string>Action</string>
+    </property>
+    <addaction name="actionAgain"/>
+    <addaction name="actionApply"/>
+    <addaction name="actionChat"/>
+    <addaction name="actionClose_Door"/>
+    <addaction name="actionEat"/>
+    <addaction name="actionFight"/>
+    <addaction name="actionFire"/>
+    <addaction name="actionForce"/>
+    <addaction name="actionKick"/>
+    <addaction name="actionLoot"/>
+    <addaction name="actionOpen_Door"/>
+    <addaction name="actionPay"/>
+    <addaction name="actionRest"/>
+    <addaction name="actionRide"/>
+    <addaction name="actionSearch"/>
+    <addaction name="actionSit"/>
+    <addaction name="actionThrow"/>
+    <addaction name="actionUntrap"/>
+    <addaction name="actionWipe_Face"/>
+   </widget>
+   <widget class="QMenu" name="menuMove">
+    <property name="title">
+     <string>Move</string>
+    </property>
+    <addaction name="actionUp"/>
+    <addaction name="actionDown"/>
+    <addaction name="actionJump"/>
+    <addaction name="actionGo"/>
+    <addaction name="actionGo_Ignore_Forks"/>
+    <addaction name="actionMove"/>
+    <addaction name="actionMove_Far"/>
+   </widget>
+   <widget class="QMenu" name="menuMagic">
+    <property name="title">
+     <string>Magic</string>
+    </property>
+    <addaction name="actionDip"/>
+    <addaction name="actionEngrave"/>
+    <addaction name="actionInvoke"/>
+    <addaction name="actionList_Reorder_Spells"/>
+    <addaction name="actionMonster_Ability"/>
+    <addaction name="actionOffer"/>
+    <addaction name="actionPray"/>
+    <addaction name="actionQuaff_Potion"/>
+    <addaction name="actionRead_Scroll_Book"/>
+    <addaction name="actionRub"/>
+    <addaction name="actionTeleport"/>
+    <addaction name="actionTurn_Undead"/>
+    <addaction name="actionZap_Spell"/>
+    <addaction name="actionZap_Wand"/>
+   </widget>
+   <widget class="QMenu" name="menuInfo">
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <addaction name="actionAdjust_Letters"/>
+    <addaction name="actionBase_Attributes"/>
+    <addaction name="actionConduct"/>
+    <addaction name="actionDiscoveries"/>
+    <addaction name="actionEnhance_Skills"/>
+    <addaction name="actionName_Creature"/>
+    <addaction name="actionName_Object"/>
+    <addaction name="actionRepeat_Message"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionCommand_Info"/>
+    <addaction name="actionExtended_Commands"/>
+    <addaction name="actionGet_Trap_Type"/>
+    <addaction name="actionHelp"/>
+    <addaction name="actionWhat_is"/>
+    <addaction name="actionWhat_is_Here"/>
+    <addaction name="actionWhat_is_There"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuInventory">
+    <property name="title">
+     <string>Inventory</string>
+    </property>
+    <addaction name="actionCount_Gold"/>
+    <addaction name="actionDrop"/>
+    <addaction name="actionDrop_Many"/>
+    <addaction name="actionEquipped_Amulet"/>
+    <addaction name="actionEquipped_Armor"/>
+    <addaction name="actionEquipped_Rings"/>
+    <addaction name="actionEquipped_Tools"/>
+    <addaction name="actionEquipped_Weapons"/>
+    <addaction name="actionGet"/>
+    <addaction name="actionInventory"/>
+    <addaction name="actionInventory_of_Type"/>
+    <addaction name="actionList_All_Equipment"/>
+    <addaction name="actionToggle_Autopickup"/>
+   </widget>
+   <widget class="QMenu" name="menuEbonHack">
+    <property name="title">
+     <string>EbonHack</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionEbonHack_Manual"/>
+    <addaction name="actionGraphics_Enabled"/>
+    <addaction name="actionGraphics_Settings"/>
+    <addaction name="actionTip_of_the_Day"/>
+    <addaction name="actionZoom"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuEbonHack"/>
+   <addaction name="menuGame"/>
+   <addaction name="menuGear"/>
+   <addaction name="menuAction"/>
+   <addaction name="menuMove"/>
+   <addaction name="menuMagic"/>
+   <addaction name="menuInventory"/>
+   <addaction name="menuInfo"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionVersion">
+   <property name="text">
+    <string>Version</string>
+   </property>
+   <property name="shortcut">
+    <string>V</string>
+   </property>
+  </action>
+  <action name="actionCompile_Options">
+   <property name="text">
+    <string>Compile Options (#version)</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="text">
+    <string>History</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+V</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+O</string>
+   </property>
+  </action>
+  <action name="actionToggle_Autopickup">
+   <property name="text">
+    <string>Toggle Autopickup</string>
+   </property>
+   <property name="shortcut">
+    <string>@</string>
+   </property>
+  </action>
+  <action name="actionExplore_Mode">
+   <property name="text">
+    <string>Explore Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+X</string>
+   </property>
+  </action>
+  <action name="actionRedraw_Screen">
+   <property name="text">
+    <string>Redraw Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionSave_And_Exit">
+   <property name="text">
+    <string>Save and Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+S</string>
+   </property>
+  </action>
+  <action name="actionSuicide">
+   <property name="text">
+    <string>Suicide (#quit)</string>
+   </property>
+  </action>
+  <action name="actionApparel_Off">
+   <property name="text">
+    <string>Apparel Off</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+A</string>
+   </property>
+  </action>
+  <action name="actionWield_Weapon">
+   <property name="text">
+    <string>Wield Weapon</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </action>
+  <action name="actionExchange_Weapons">
+   <property name="text">
+    <string>Exchange Weapons</string>
+   </property>
+   <property name="shortcut">
+    <string>X</string>
+   </property>
+  </action>
+  <action name="actionTwo_Weapon_Combat">
+   <property name="text">
+    <string>Two Weapon Combat (#twoweapon)</string>
+   </property>
+   <property name="toolTip">
+    <string>Two Weapon Combat (#twoweapon)</string>
+   </property>
+  </action>
+  <action name="actionLoad_Quiver">
+   <property name="text">
+    <string>Load Quiver</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Q</string>
+   </property>
+  </action>
+  <action name="actionWear_Armor">
+   <property name="text">
+    <string>Wear Armor</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+W</string>
+   </property>
+  </action>
+  <action name="actionTake_Off_Armor">
+   <property name="text">
+    <string>Take Off Armor</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+T</string>
+   </property>
+  </action>
+  <action name="actionPut_On_Accessory">
+   <property name="text">
+    <string>Put On Accessory</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+P</string>
+   </property>
+  </action>
+  <action name="actionRemove_Accessory">
+   <property name="text">
+    <string>Remove Accessory</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+R</string>
+   </property>
+  </action>
+  <action name="actionAgain">
+   <property name="text">
+    <string>Again</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionApply">
+   <property name="text">
+    <string>Apply</string>
+   </property>
+   <property name="shortcut">
+    <string>A</string>
+   </property>
+  </action>
+  <action name="actionChat">
+   <property name="text">
+    <string>Chat (#chat)</string>
+   </property>
+  </action>
+  <action name="actionClose_Door">
+   <property name="text">
+    <string>Close Door</string>
+   </property>
+   <property name="shortcut">
+    <string>C</string>
+   </property>
+  </action>
+  <action name="actionDrop">
+   <property name="text">
+    <string>Drop</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
+  </action>
+  <action name="actionDrop_Many">
+   <property name="text">
+    <string>Drop Many</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+D</string>
+   </property>
+  </action>
+  <action name="actionEat">
+   <property name="text">
+    <string>Eat</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+  </action>
+  <action name="actionEngrave">
+   <property name="text">
+    <string>Engrave</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+E</string>
+   </property>
+  </action>
+  <action name="actionFight">
+   <property name="text">
+    <string>Fight</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F</string>
+   </property>
+  </action>
+  <action name="actionFire">
+   <property name="text">
+    <string>Fire</string>
+   </property>
+   <property name="shortcut">
+    <string>F</string>
+   </property>
+  </action>
+  <action name="actionForce">
+   <property name="text">
+    <string>Force (#force)</string>
+   </property>
+  </action>
+  <action name="actionGet">
+   <property name="text">
+    <string>Get</string>
+   </property>
+   <property name="shortcut">
+    <string>,</string>
+   </property>
+  </action>
+  <action name="actionKick">
+   <property name="text">
+    <string>Kick</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionLoot">
+   <property name="text">
+    <string>Loot (#loot)</string>
+   </property>
+  </action>
+  <action name="actionOpen_Door">
+   <property name="text">
+    <string>Open Door</string>
+   </property>
+   <property name="shortcut">
+    <string>O</string>
+   </property>
+  </action>
+  <action name="actionPay">
+   <property name="text">
+    <string>Pay</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
+  </action>
+  <action name="actionRest">
+   <property name="text">
+    <string>Rest</string>
+   </property>
+   <property name="shortcut">
+    <string>.</string>
+   </property>
+  </action>
+  <action name="actionRide">
+   <property name="text">
+    <string>Ride (#ride)</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
+  </action>
+  <action name="actionSit">
+   <property name="text">
+    <string>Sit (#sit)</string>
+   </property>
+  </action>
+  <action name="actionThrow">
+   <property name="text">
+    <string>Throw</string>
+   </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
+  </action>
+  <action name="actionUntrap">
+   <property name="text">
+    <string>Untrap (#untrap)</string>
+   </property>
+  </action>
+  <action name="actionWipe_Face">
+   <property name="text">
+    <string>Wipe Face (#wipe)</string>
+   </property>
+  </action>
+  <action name="actionUp">
+   <property name="text">
+    <string>Up</string>
+   </property>
+   <property name="shortcut">
+    <string>&lt;</string>
+   </property>
+  </action>
+  <action name="actionDown">
+   <property name="text">
+    <string>Down</string>
+   </property>
+   <property name="shortcut">
+    <string>&gt;</string>
+   </property>
+  </action>
+  <action name="actionJump">
+   <property name="text">
+    <string>Jump (#jump)</string>
+   </property>
+  </action>
+  <action name="actionGo">
+   <property name="text">
+    <string>Go</string>
+   </property>
+   <property name="shortcut">
+    <string>G</string>
+   </property>
+  </action>
+  <action name="actionGo_Ignore_Forks">
+   <property name="text">
+    <string>Go, Ignore Forks</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+G</string>
+   </property>
+  </action>
+  <action name="actionMove">
+   <property name="text">
+    <string>Move</string>
+   </property>
+   <property name="shortcut">
+    <string>M</string>
+   </property>
+  </action>
+  <action name="actionMove_Far">
+   <property name="text">
+    <string>Move Far</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+M</string>
+   </property>
+  </action>
+  <action name="actionQuaff_Potion">
+   <property name="text">
+    <string>Quaff Potion</string>
+   </property>
+   <property name="shortcut">
+    <string>Q</string>
+   </property>
+  </action>
+  <action name="actionRead_Scroll_Book">
+   <property name="text">
+    <string>Read Scroll/Book</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="actionZap_Wand">
+   <property name="text">
+    <string>Zap Wand</string>
+   </property>
+   <property name="shortcut">
+    <string>Z</string>
+   </property>
+  </action>
+  <action name="actionZap_Spell">
+   <property name="text">
+    <string>Zap Spell</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionDip">
+   <property name="text">
+    <string>Dip (#dip)</string>
+   </property>
+  </action>
+  <action name="actionRub">
+   <property name="text">
+    <string>Rub (#rub)</string>
+   </property>
+  </action>
+  <action name="actionInvoke">
+   <property name="text">
+    <string>Invoke (#invoke)</string>
+   </property>
+  </action>
+  <action name="actionOffer">
+   <property name="text">
+    <string>Offer (#offer)</string>
+   </property>
+  </action>
+  <action name="actionPray">
+   <property name="text">
+    <string>Pray (#pray)</string>
+   </property>
+  </action>
+  <action name="actionTeleport">
+   <property name="text">
+    <string>Teleport</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionMonster_Ability">
+   <property name="text">
+    <string>Monster Ability (#monster)</string>
+   </property>
+  </action>
+  <action name="actionTurn_Undead">
+   <property name="text">
+    <string>Turn Undead (#turn)</string>
+   </property>
+  </action>
+  <action name="actionInventory">
+   <property name="text">
+    <string>Inventory</string>
+   </property>
+   <property name="shortcut">
+    <string>I</string>
+   </property>
+  </action>
+  <action name="actionInventory_of_Type">
+   <property name="text">
+    <string>Inventory of Type</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+I</string>
+   </property>
+  </action>
+  <action name="actionEquipped_Weapons">
+   <property name="text">
+    <string>Equipped Weapons</string>
+   </property>
+   <property name="shortcut">
+    <string>)</string>
+   </property>
+  </action>
+  <action name="actionEquipped_Armor">
+   <property name="text">
+    <string>Equipped Armor</string>
+   </property>
+   <property name="shortcut">
+    <string>[</string>
+   </property>
+  </action>
+  <action name="actionEquipped_Rings">
+   <property name="text">
+    <string>Equipped Rings</string>
+   </property>
+   <property name="shortcut">
+    <string>=</string>
+   </property>
+  </action>
+  <action name="actionEquipped_Amulet">
+   <property name="text">
+    <string>Equipped Amulet</string>
+   </property>
+   <property name="shortcut">
+    <string>&quot;</string>
+   </property>
+  </action>
+  <action name="actionEquipped_Tools">
+   <property name="text">
+    <string>Equipped Tools</string>
+   </property>
+   <property name="shortcut">
+    <string>(</string>
+   </property>
+  </action>
+  <action name="actionList_All_Equipment">
+   <property name="text">
+    <string>List All Equipment</string>
+   </property>
+   <property name="shortcut">
+    <string>*</string>
+   </property>
+  </action>
+  <action name="actionCount_Gold">
+   <property name="text">
+    <string>Count Gold</string>
+   </property>
+   <property name="shortcut">
+    <string>$</string>
+   </property>
+  </action>
+  <action name="actionConduct">
+   <property name="text">
+    <string>Conduct (#conduct)</string>
+   </property>
+  </action>
+  <action name="actionDiscoveries">
+   <property name="text">
+    <string>Discoveries</string>
+   </property>
+   <property name="shortcut">
+    <string>\</string>
+   </property>
+  </action>
+  <action name="actionBase_Attributes">
+   <property name="text">
+    <string>Base Attributes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionList_Reorder_Spells">
+   <property name="text">
+    <string>List/Reorder Spells</string>
+   </property>
+   <property name="shortcut">
+    <string>+</string>
+   </property>
+  </action>
+  <action name="actionAdjust_Letters">
+   <property name="text">
+    <string>Adjust Letters (#adjust)</string>
+   </property>
+  </action>
+  <action name="actionName_Object">
+   <property name="text">
+    <string>Name Object (#name)</string>
+   </property>
+  </action>
+  <action name="actionName_Creature">
+   <property name="text">
+    <string>Name Creature</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+C</string>
+   </property>
+  </action>
+  <action name="actionEnhance_Skills">
+   <property name="text">
+    <string>Enhance Skills (#enhance)</string>
+   </property>
+  </action>
+  <action name="actionRepeat_Message">
+   <property name="text">
+    <string>Repeat Message</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="shortcut">
+    <string>?</string>
+   </property>
+  </action>
+  <action name="actionExtended_Commands">
+   <property name="text">
+    <string>Extended Commands (#?)</string>
+   </property>
+  </action>
+  <action name="actionCommand_Info">
+   <property name="text">
+    <string>Command Info</string>
+   </property>
+  </action>
+  <action name="actionGet_Trap_Type">
+   <property name="text">
+    <string>Get Trap Type</string>
+   </property>
+   <property name="shortcut">
+    <string>^</string>
+   </property>
+  </action>
+  <action name="actionWhat_is_Here">
+   <property name="text">
+    <string>What is Here</string>
+   </property>
+   <property name="shortcut">
+    <string>:</string>
+   </property>
+  </action>
+  <action name="actionWhat_is_There">
+   <property name="text">
+    <string>What is There</string>
+   </property>
+   <property name="shortcut">
+    <string>;</string>
+   </property>
+  </action>
+  <action name="actionWhat_is">
+   <property name="text">
+    <string>What is</string>
+   </property>
+   <property name="shortcut">
+    <string>/</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect to Server...</string>
+   </property>
+  </action>
+  <action name="actionGraphics_Enabled">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Enable Tiles</string>
+   </property>
+   <property name="shortcut">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="text">
+    <string>Zoom...</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionEbonHack_Manual">
+   <property name="text">
+    <string>EbonHack Manual</string>
+   </property>
+  </action>
+  <action name="actionTip_of_the_Day">
+   <property name="text">
+    <string>Tip of the Day</string>
+   </property>
+  </action>
+  <action name="actionChoose_Tileset">
+   <property name="text">
+    <string>Choose Tileset...</string>
+   </property>
+  </action>
+  <action name="actionGraphics_Settings">
+   <property name="text">
+    <string>Graphics Settings...</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

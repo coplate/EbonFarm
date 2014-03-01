@@ -1,0 +1,88 @@
+#Set to TRUE to use the number pad for direction keys
+#Set to FALSE to use keyboard (ykuhlbjn)
+%Numpad Keys
+>TRUE
+
+#Larger values increase the size of the displayed window.
+#A zoom of 100 is normal size, 200 is double-size, 50 is half-size, etc.
+%Zoom Factor
+>100
+
+#The server's host name or IP address
+%Host Name
+>nethack.alt.org
+
+#The font for displaying telnet characters
+%Font Name
+>monospace
+
+#The font size of telnet characters for tilesets less than 12 pixels across
+%Font Size Tiny
+>9
+
+#The font size of telnet characters for tilesets 12 pixels across
+%Font Size 12
+>10
+
+#The font size of telnet characters for tilesets 16 pixels across
+%Font Size 16
+>11
+
+#The font size of telnet characters for tilesets 20 pixels across
+%Font Size 20
+>14
+
+#The font size of telnet characters for tilesets 24 pixels across
+%Font Size 24
+>16
+
+#The font size of telnet characters for tilesets 32 pixels across
+%Font Size 32
+>22
+
+#Offsets the font vertically. Needed in case it's not centered on the tile,
+#and the top or bottom of characters are being chopped off. Used for tilesets 16 pixels or smaller.
+%Font Offset 16
+>-1
+
+#The font offset to use for tilesets larger than 16 pixels
+%Font Offset Large
+>-2
+
+#TRUE if the user has specified a custom font, FALSE otherwise
+%Use Custom Font
+>FALSE
+
+#The name of the custom font, only used if "Use Custom Font" is TRUE.
+%Custom Font Name
+>DejaVu Sans Mono
+
+#The height of the custom font in pixels.
+%Custom Font Size
+>11
+
+#The number of lines in the history log, shown at the top of the gameplay
+#area.
+%History Size
+>3
+
+#The full path to a custom tileset, or NONE
+%Tileset
+>NONE
+
+#True if we're using a custom tileset, false otherwise
+%Use Tileset
+>FALSE
+
+#Set to either Qt or OpenGL
+%Use OpenGL
+>FALSE
+
+#The graphic at the bottom of the gravestone, we'll disable graphics when we detect it
+%Gravestone Bottom
+>)/\\_//(\/(/\)/\//\/|
+
+#Use tile data sent by the server, set to FALSE to ignore it.
+%Use Server Tiles
+>TRUE
+

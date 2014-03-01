@@ -1,0 +1,77 @@
+EbonHack version 1.30
+
+###############################################################################
+UBUNTU:
+
+1) Open a command prompt and navigate to the ebonhack folder. Then type:
+
+    sudo apt-get update
+    sudo apt-get install qt5-default qtbase5-dev
+    ./setup.sh [--no_opengl] [--debug]
+    make
+
+    (Items in square brackets are optional)
+
+
+2) An executable named ebonhack should be created, run it to play.
+
+###############################################################################
+OTHER LINUX:
+
+1) Install the GNU C++ compiler
+
+2) Install the QT 5 SDK.
+
+3) Navigate to the ebonhack folder and type the following commands:
+
+    ./setup.sh [--no_opengl] [--debug]
+    make
+
+    (Items in square brackets are optional)
+
+4) An executable named ebonhack should be created, run it to play.
+
+###############################################################################
+WINDOWS:
+
+Note: The following instructions are useful if you want to develop EbonHack.
+If you just want to play it, you can download the windows executable from
+www.junction404.com/#ebonhack
+
+1) Install the QT 5 SDK. Be sure to install MinGW and the Qt components for
+   MinGW.
+
+2) Set up your PATH so that qmake and mingw32-make are available from the
+   command prompt. As of Qt 4.7.4, they provide a special command prompt that
+   you can use, located at:
+
+   Start->All Programs->Qt SDK->Desktop->Qt for Desktop (MinGW)
+
+3) Open a command prompt and navigate to the ebonhack folder. Then type:
+
+    setup
+    mingw32-make
+
+4) ebonhack.exe should be generated in a release folder. Copy it to the root
+   ebonhack folder and run it to play
+
+###############################################################################
+LEGAL STUFF:
+
+    EbonHack is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    EbonHack is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with EbonHack.  If not, see <http://www.gnu.org/licenses/>.
+
+###############################################################################
+CONTACT:
+
+You can contact me with bug reports at dmccallum9@gmail.com

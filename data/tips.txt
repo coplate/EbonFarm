@@ -1,0 +1,27 @@
+%Num Tips
+>6
+
+%Current Tip
+>2
+
+%Tip 1
+>You can use the Home key to toggle graphics mode on and off - useful if Ebonhack graphics are covering text.
+
+%Tip 2
+>If your graphics look messed up, select Options from the Game menu and disable DEC graphics mode.
+
+%Tip 3
+>You can use the arrow keys to move your character.
+
+%Tip 4
+>Shift-click on a monster or dungeon feature to display its name.
+
+%Tip 5
+>You can chat with your fellow players on IRC. Server: irc.freenode.net Channel: #nethack
+
+%Tip 6
+>You can get more accurate graphics by adding OPTIONS=vt_tiledata to your nethack options file.
+
+%Show Tips
+>TRUE
+

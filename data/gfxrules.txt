@@ -1,0 +1,110 @@
+REGEXP: ^\s+\S
+ACTION: disable
+
+REGEXP: \D +\[(?:Unskilled|Basic|Skilled|Expert)\]
+ACTION: disable
+
+REGEXP: ^Hello.+welcome to NetHack!
+ACTION: enable
+
+REGEXP: ^Hello.+welcome back to NetHack!
+ACTION: enable
+
+REGEXP: ^Velkommen.+welcome to NetHack!
+ACTION: enable
+
+REGEXP: ^Velkommen.+welcome back to NetHack!
+ACTION: enable
+
+REGEXP: ^Aloha.+welcome to NetHack!
+ACTION: enable
+
+REGEXP: ^Aloha.+welcome back to NetHack!
+ACTION: enable
+
+REGEXP: ^Konnichi wa.+welcome to NetHack!
+ACTION: enable
+
+REGEXP: ^Konnichi wa.+welcome back to NetHack!
+ACTION: enable
+
+REGEXP: ^Salutations.+welcome to NetHack!
+ACTION: enable
+
+REGEXP: ^Salutations.+welcome back to NetHack!
+ACTION: enable
+
+REGEXP: ^cmdassist: Invalid direction key!
+ACTION: disable
+
+REGEXP: ^What type of things do you want to take off\?
+ACTION: disable
+
+REGEXP: ^What type of object do you want an inventory of\?
+ACTION: disable
+
+REGEXP: ^Set what options\?
+ACTION: disable
+
+REGEXP: ^NetHack History file for release 3\.4
+ACTION: disable
+
+REGEXP: ^Base Attributes
+ACTION: disable
+
+REGEXP: ^Choose which spell to cast
+ACTION: disable
+
+REGEXP: ^Currently known spells
+ACTION: disable
+
+REGEXP: ^Discoveries
+ACTION: disable
+
+REGEXP: ^Do what?
+ACTION: disable
+
+REGEXP: ^Put in what\?
+ACTION: disable
+
+REGEXP: ^Put in what type of objects\?
+ACTION: disable
+
+REGEXP: ^Take out what type of objects\?
+ACTION: disable
+
+REGEXP: ^Take out what\?
+ACTION: disable
+
+REGEXP: ^Select one item:
+ACTION: disable
+
+REGEXP: ^Open a portal to which dungeon\?
+ACTION: disable
+
+REGEXP: ^Current skills:
+ACTION: disable
+
+REGEXP: ^Message History
+ACTION: disable
+
+REGEXP: ^Pick a skill to advance:
+ACTION: disable
+
+REGEXP: ^Restoring save file\.\.\.--More--
+ACTION: disable
+
+REGEXP: ^What would you like to identify first\?
+ACTION: disable
+
+REGEXP: ^What would you like to identify next\?
+ACTION: disable
+
+REGEXP: ^Reordering spells; swap
+ACTION: disable
+
+REGEXP: ^Spellcasting Skills
+ACTION: disable
+
+REGEXP: ^Goodbye.*\.\.\.
+ACTION: disable

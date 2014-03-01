@@ -1,0 +1,133 @@
+<html>
+<head>
+    <title>EbonHack Manual</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+
+<center><h1>EbonHack Manual</h1></center>
+<p>
+<br>
+<br>
+
+<h2>Contents</h2>
+
+<a HREF="#introduction">Intoduction</a></h1><br>
+<a HREF="#features">Features</a><br>
+<a HREF="#troubleshooting">Troubleshooting</a><br>
+<a HREF=#credits>Credits</a><br>
+<a HREF="#about">About</a><br>
+
+<br>
+<h2><a name="introduction">Introduction</a></h2>
+
+<p>
+EbonHack is a graphical client for the telnet version of Nethack. Normal telnet clients only support text interfaces. EbonHack maps different character and color combinations to Nethack images, and can accept tile data from the server. This manual describes the EbonHack client. For information on the actual Nethack game, see one of the many sources online.
+</p>
+
+<br>
+<h2><a name ="features">Features</a></h2>
+
+<ul>
+<li><b>Graphics Mode:</b> Most telnet characters are replaced with a descriptive image from one of several tilesets. You can switch between graphics and text mode with the Home key.</li><br>
+<li><b>Server Tile Data:</b> Some servers support the 'Glyphs' extension, which tells the client exactly which image to use for each telnet character. This provides 100% accurate matching of graphics to characters. To enable the extension:</li><br>
+    <ul>
+        <li>Log in to the server.
+        <li>Edit the options file from the server's main menu.
+        <li>Add <i>OPTIONS=vt_tiledata</i> to the file.</li><br>
+    </ul>
+<li><b>Tilesets:</b> Ebonhack supports multiple tilesets, which can be found in the Ebonhack->Graphics Settings... menu.</li><br>
+<li><b>Arrow Keys:</b> The arrow keys can be used to control character movement.</li><br>
+<li><b>Command Menus:</b> There's a menu item for every Nethack command, along with its keyboard shortcut.</li><br>
+<li><b>Information:</b> Shift-clicking in the map returns the name of the creature, item, or dungeon feature selected.
+</ul>
+
+<br>
+<h2><a name = "troubleshooting">Troubleshooting</a></h2>
+
+<h3>Q: Some characters don't have any graphics!</h3>
+<p>
+A: Unfortunately, not all characters can be matched to a graphic. Some characters represent more than one type of thing, and no single graphic makes sense. For example, a white # can be either a sink or a corridor.
+</p>
+<p>
+If you find a character that should have a graphic, but doesn't, you can try shift-right clicking on it to autodetect one.
+</p>
+
+<br>
+<h3>Q: The walls and floors have the wrong graphics!</h3>
+<p>
+A: Try disabling DEC graphics. Go to Game->Options and change DECgraphics to false. You can use space to navigate through the options.
+</p>
+
+<br>
+<h3>Q: Graphics mode is turned on/off at incorrect times.</h3>
+<p>
+A: EbonHack does its best to figure out if the screen is filled with text or a dungeon level, and switches between text and graphics automatically. However, there are times when it picks the wrong one. You can manually change this using the Home key, or 'Graphics Enabled' from the Game menu.
+</p>
+
+<br>
+<h3>Q: The arrow keys don't move my character.</h3>
+<p>
+A: Nethack doesn't normally accept arrow keys, and movement commands are either ykulnjbh or 12346789. EbonHack converts the arrow keys to the appropriate movement commands, and sends them to the server. It could be that the server is set to accept number pad directions, and EbonHack is sending letters, or vice-versa.
+</p>
+<p>
+To change the commands the server accepts, go to Game->Options and select 'number_pad'. You can use space to navigate through the options.
+</p>
+
+<br>
+<h3>Q: EbonHack gives an error when I try to watch other players.</h3>
+<p>
+A: This is a known bug when watching players whose telnet window is larger than 80x24. Sadly, there is no fix in the forseeable future.
+</p>
+
+<br>
+<h3>Q: I can't edit my configuration file online.</h3>
+<p>
+A: This is a known problem. While I have tried to incorporate as many xterm commands into EbonHack as possible, it only contains a subset of them. You may want to try using a telnet program to edit config files.
+</p>
+
+<br>
+<h3>Q: I've found a bug!</h3>
+<p>
+A: You can report bugs to dmccallum9@gmail.com. Please include your operating system, EbonHack version, and the address of the server you were connected to.
+</p>
+
+<br>
+<h2><a name ="credits">Credits</a></h2>
+<ul>
+
+<li><b>John Shaw</b> Created the 'absurd' tileset. http://www.thinktwicenews.com</li><br>
+
+<li><b>James Hogwood</b> Created the chozo32 tileset. http://www.multifoliate.com/nh/</li><br>
+
+<li><b>'EvilGeek'</b> Modified the chozo32 tileset to create chozo32b. http://www.multifoliate.com/nh/</li><br>
+
+<li><b>Robert Cook</b> Created the geoduck tileset. http://cook.web.eschelon.com/nhack.html</li><br>
+
+<li><b>The NetHack Developers</b> Created the original X11tiles tileset.</li><br>
+
+<li><b>David McCallum</b> Everything else.</li>
+
+</ul>
+
+<br>
+<h2><a name ="about">About</a></h2>
+<p>
+EbonHack is composed of over 11,000 lines of C++ and makes heavy use of the Qt framework. EbonHack is a free, open-source program and is distributed under the GNU Public License version 3 or later.
+</p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
+

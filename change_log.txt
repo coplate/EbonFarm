@@ -1,0 +1,82 @@
+Version 1.04:
+
+    -Fixed a crash on startup that occured when EbonHack was compiled with older
+
+    versions of Qt 4
+
+    -Fixed a bug where the initial login screen was not displayed
+
+    -Resolved some compiler warnings
+
+    -Mapped a graphic to the Archon 'A' character
+
+    -Removed OpenGL code that was causing crashes in Linux. However, using the zoom feature under Linux is now quite slow.
+
+
+
+Version 1.10:
+
+    -fixed a bug where commands might (rarely) be skipped on intermittent connections
+
+    -added a widget to keep track of latency, and whether the display is up to date
+
+    -matched graphics to the keystone kops
+
+    -added a dialog to switch between OpenGL and native Qt rendering
+
+    -allowed the use of custom tilesets
+
+    -removed the zoom feature, which was very slow. Instead, users can pick from tilesets of different sizes.
+
+    -automatically disable graphics mode after a disconnect or death
+
+    -automatically enable graphics mode when starting the game as a tourist or samurai
+
+
+
+Version 1.20:
+    -enabled EbonHack to accept tile data from the server when OPTIONS=vt_tiledata is set
+
+    -fixed a bug where EbonHack wasn't outputting the remaining data properly when it received an unknown protocol
+
+    -Added support for extra Xterm escape sequences
+
+    -minor bug fixes
+
+
+
+Version 1.21:
+
+    -fixed some mistakes in the manual
+
+
+
+Version 1.22:
+    -added support for tilesets with a width less than 16 pixels
+
+    -added the 'geoduck' tileset
+
+    -added support for extra xterm commands
+
+
+
+Version 1.23:
+
+    -scaled the chozob tileset to different sizes
+
+    -automatically enable graphics mode when starting the game as a knight
+
+
+
+Version 1.30:
+
+    -ported EbonHack to Qt 5
+
+    -uses can now select custom fonts from the Ebonhack->Graphics Settings menu
+
+    -more intelligent auto-sizing of fonts for tall, narrow tilesets
+
+    -fixed minor display glitches when adjusting graphics settings
+
+Version 0.10
+	- Extended from Ebonhack.
