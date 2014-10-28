@@ -40,6 +40,7 @@ FarmDockWidget::~FarmDockWidget()
 QString message="";
 QString status="";
 
+QString itemList=")[!?/=+*(`$%0_\"";
 QString farmRubbish;
 bool expecting_alerts = false;
 long expected_alerts = 0;
@@ -49,6 +50,7 @@ QString splitWeapon;
 QString killWeapon;
 QString splitMessage;
 QString killMessage;
+QString farmMessage;
 QString empty = "";
 
 QString wield_command="w";
@@ -58,6 +60,7 @@ QString pick_up_command = ",";
 QString enter_command = "\n";
 QString esc_command = "\x1B";
 QString pick_up_what_response = "Pick up what?";
+QString more = "--More--";
 QString direction;
 QString rev_direction;
 uint8_t playerline;
@@ -175,7 +178,7 @@ bool  FarmDockWidget::eat(){
 
 }
 
-bool  FarmDockWidget::loot(const QString &itemClass){
+bool  FarmDockWidget::loot(const QString &itemClass, bool farm){
 
     bool items_found = true;
     QString command ="";
@@ -183,7 +186,7 @@ bool  FarmDockWidget::loot(const QString &itemClass){
     try{
 
 
-        while(( items_found == true ) && ( strchr(")[!?/=+*(`$%0_\"",this->whiteBoard->getTelnetPro()->getTelnetWindow()->getByte(farmpos, farmline))!= NULL) ) {
+        while(( items_found == true ) && itemList.contains(this->whiteBoard->getTelnetPro()->getTelnetWindow()->getByte(farmpos, farmline)) ) {
             items_found = false;
             cout<<"I need to pick up scrolls of scare monster, I might as well pick them all up"<<endl;
             if( ! running ){
@@ -218,22 +221,25 @@ bool  FarmDockWidget::loot(const QString &itemClass){
                 send_and_expect("y", empty);
             }
             if( items_found == 1){
-                while( message.contains("--More--") ){
+                while( message.contains(more) ){
                     send_and_expect(esc_command, empty);
                     if( message.contains("little trouble")){
                         send_and_expect("y", empty);
-                    }else
-                    if( message.contains("much trouble")){
+                    }else if( message.contains("much trouble")){
                         send_and_expect("y", empty);
-                    }else
-                    if( message.contains("extreme difficulty")){
-                        send_and_expect("y", empty);
+                    }else if( message.contains("extreme difficulty")){
+                        if( this->ui->checkBox_buc->isChecked() and (farm == false)){
+                            send_and_expect("y", empty);
+                        }else{
+                            send_and_expect("q", empty);
+                        }
                     }else{
                         send_and_expect(esc_command, empty);
                         break;
                     }
                 }
-                if( ! itemClass.contains("?")){
+                if( this->ui->checkBox_buc->isChecked() and (farm == false)){
+
                     send_and_expect("D", "Drop what type of");
                     send_and_expect(itemClass, "Drop what type of");
                     send_and_expect(enter_command, "What would you like to drop");
@@ -247,7 +253,7 @@ bool  FarmDockWidget::loot(const QString &itemClass){
                     if( message.contains("little trouble") ){
                         send_and_expect("y", empty);
                     }
-                    while( message.contains("--More--") ){
+                    while( message.contains(more) ){
                         send_and_expect(esc_command, empty);
                         if( message.contains("little trouble")){
                             send_and_expect("y", empty);
@@ -261,15 +267,16 @@ bool  FarmDockWidget::loot(const QString &itemClass){
                         }
                     }
                 }
+
             }
 
-            if( message.contains("--More--")){
+            if( message.contains(more)){
                 send_and_expect(esc_command, empty);
             }
 
 
 
-            send_and_expect( "m"+rev_direction, "burned into the floor");
+            send_and_expect( "m"+rev_direction, "burned into the");
 
             if( this->whiteBoard->getTelnetPro()->getTelnetWindow()->getCursorY() != playerline){
                 cout<<"cursor is not at farmline"<<endl;
@@ -287,9 +294,19 @@ bool  FarmDockWidget::loot(const QString &itemClass){
 
             if( items_found ){
 
-                send_and_expect( "l", "uncursed sack here, loot it? [ynq");
-                send_and_expect( "y", "You carefully open the sack...--More-");
-                send_and_expect( enter_command, "Do what?");
+                send_and_expect( "l", "here, loot it? [ynq");
+                if( message.contains("bag")){
+                    cout<<"Tring to loog a bag of holding, or unidentified bag"<<endl;
+                    return false;
+                }
+
+                send_and_expect( "y", "You carefully open the ");
+                if( message.contains("--More--")){
+                    send_and_expect( enter_command, "Do what?");
+                }else{
+                    cout<<"No --More-- after looting"<<endl;
+                    return false;
+                }
                 send_and_expect( "i", "Put in what type of objects?");
                 send_and_expect( itemClass, "Put in what type of objects?");
                 send_and_expect( enter_command, "Put in what?");
@@ -383,11 +400,11 @@ bool  FarmDockWidget::offer(){
         }
         send_and_expect("y", empty);
         //;Consumed in a flash
-        if(!message.contains("Your sacrifice is consumed in a flash of light!")){
+        if(!(message.contains("Your sacrifice is consumed in a")) ){
             cout<<"sacrifice not consumed in a flash"<<endl;
             return false;
         }
-        if(message.contains("--More--")){
+        if(message.contains(more)){
             send_and_expect(enter_command, empty);
         }
 
@@ -397,25 +414,26 @@ bool  FarmDockWidget::offer(){
 
         }
         if(
-                message.contains("Your sacrifice is consumed in a flash of light!") ||
+                message.contains("Your sacrifice is consumed in a") ||
                 message.contains("reconciliation") ||
                 message.contains("four-leaf clover") ||
                 message.trimmed().length() == 0
                 ){
+            if( ui->checkBox_pray->isChecked()){
+                send_and_expect("#pray\n", empty);
+                if( !message.contains("Are you sure you want to pray?")){
+                    cout<<"Prayer message was not correct;"<<endl;
+                }
 
-            send_and_expect("#pray\n", empty);
-            if( !message.contains("Are you sure you want to pray?")){
-                cout<<"Prayer message was not correct;"<<endl;
-            }
-
-            send_and_expect("y", empty);
-            if( !message.contains("You begin praying to --More--" ) || !message.contains("--More--")){
-                cout<<"Prayer response was not correct;"<<endl;
-            }
-            for( int i = 0; i < 16; i++){
-                send_and_expect(enter_command, empty);
-                if( !message.contains("--More--")){
-                    break;
+                send_and_expect("y", empty);
+                if( !message.contains("You begin praying to --More--" ) || !message.contains(more)){
+                    cout<<"Prayer response was not correct;"<<endl;
+                }
+                for( int i = 0; i < 16; i++){
+                    send_and_expect(enter_command, empty);
+                    if( !message.contains(more)){
+                        break;
+                    }
                 }
             }
 
@@ -425,11 +443,11 @@ bool  FarmDockWidget::offer(){
         }
     }
     send_and_expect("m"+rev_direction, empty);
-    if(!message.contains("burned into the floor")){
-        cout<<"cursor is not at farmline"<<endl;
+    if(!message.contains("burned into the")){
+        cout<<"nothing is burned into the ground|floor"<<endl;
         return false;
     }
-    if(message.contains("--More--")){
+    if(message.contains(more)){
         send_and_expect(enter_command, empty);
     }
     if( this->whiteBoard->getTelnetPro()->getTelnetWindow()->getCursorY() != playerline){
@@ -481,6 +499,12 @@ void FarmDockWidget::pb_start(){
     for( int i = 0; i < attacks; i++){
         killMessage.append("F" + direction);
     }
+    farmMessage.clear();
+    attacks = this->ui->spinBox_farm_attacks->value();
+    farmMessage.append("F" + direction);//only send fight every 8, send ctrlA normally
+    for( int i = 1; i < attacks; i++){
+        farmMessage.append("\x01");//ctr+a
+    }
     //attackMessage += (char)1;// 1 is "ctrl+A" or 'Again'
     farmline = playerline + offset.second;
     farmpos = playerpos + offset.first;
@@ -498,25 +522,30 @@ void FarmDockWidget::pb_start(){
 
 void FarmDockWidget::farm(const QString current_weapon, const QString &attack_command, int rounds){
 
-    int skip_max = 7;
-    int skipped = 0;
-
+    int skip_max = min(7,rounds-1);
+    int skipped = 0; /* The point of skipped is to try to loot scrolls after 7 turns, so if round is smalleer than 7, we have a problem */
 
     try{
-        send_and_expect(wield_command, empty);
-        /*
-         * if(! message.contains("want to wield")){
-            cout<<"Bad response to wield"<<endl;
-            return fail_abort();
-            break;
+        if( current_weapon.compare(empty) != 0 ){
+            send_and_expect(wield_command, empty);
+            /*
+             * if(! message.contains("want to wield")){
+                cout<<"Bad response to wield"<<endl;
+                return fail_abort();
+                break;
+            }
+            */
+            send_and_expect(current_weapon, empty);
         }
-        */
-        send_char(current_weapon);
-        refill();
-
         for( int i = 0; (i < rounds) && running; i++){
             refill();
             uint8_t altar = this->whiteBoard->getTelnetPro()->getTelnetWindow()->getByte(farmpos, farmline);
+            if(message.contains("--More--")){
+                  if(message.contains("trice") || message.contains("stone")){
+                    return fail_abort("press enter");
+                  }
+                   send_and_expect(enter_command, empty);
+            }
             if(status.contains("Hungry") || message.contains("feel hungry")){
                 bool stat = eat();
                 if( stat == false)
@@ -524,10 +553,10 @@ void FarmDockWidget::farm(const QString current_weapon, const QString &attack_co
                     return fail_abort("Eating failed");
                 }
 
-            }else if(strchr(")[!?/=+*(`$%0_\"",altar) != NULL ){
-                cout<<"Altar has an item on top"<<endl;
+            }else if( itemList.contains(altar) ){
+                cout<<"Altar has an item on top: "<<skipped<<endl;
                 /* altar has an item on it, not a monster, and not food */
-                skipped++;
+                skipped++;/* this only tracks int he rounds, maybe make it global */
                 if( ui->checkBox->isChecked() ){
                     cout<<"Skipped is"<<skipped<<endl;
                     if( skipped > 0){
@@ -541,10 +570,10 @@ void FarmDockWidget::farm(const QString current_weapon, const QString &attack_co
                 }
                 /* make sure altar is still empty, or figure out how to loot wile I am still on it */
                 altar = this->whiteBoard->getTelnetPro()->getTelnetWindow()->getByte(farmpos, farmline);
-                if(strchr(")[!?/=+*(`$%0_\"",altar) != NULL ){
-                    cout<<"Altar STILL has an item on top"<<endl;
+                if( itemList.contains(altar) ){
+                    cout<<"Altar STILL has an item on top: "<<skipped<<endl;
                     if( skipped > skip_max){
-                        bool stat = loot();
+                        bool stat = loot("?", true);
                         if( stat == false)
                         {
                             return fail_abort("looting failed");
@@ -553,10 +582,7 @@ void FarmDockWidget::farm(const QString current_weapon, const QString &attack_co
                     }
                 }
                 send_char(pause_command);
-            }else if(strchr("c@",altar) != NULL ){
-                cout<<"Altar has a dangerous monster"<<endl;
-                return fail_abort("Altar has a dangerous monster");
-            }else if(strchr("PsSafZB:",altar) != NULL ){
+            }else if(( strchr("adPsSfZB:",altar) != NULL) || (ui->checkBox_killAll->isChecked() && !ui->lineEdit_killAll->text().contains(altar) ) ){
                 cout<<"Altar has a safe monster on top"<<endl;
                 /* the 'safe monsters I am willing to autofarm */
                 skipped = 0;
@@ -567,6 +593,9 @@ void FarmDockWidget::farm(const QString current_weapon, const QString &attack_co
                     cout<<"Farm Rubbish: "<<farmRubbish.toStdString()<<endl;
 
                 }
+            }else if(strchr("c@",altar) != NULL ){
+                cout<<"Altar has a dangerous monster"<<endl;
+                return fail_abort("Altar has a dangerous monster");
             }else{
                 if( skipped > skip_max){
                     cout<<"The farmline does not have a pudding on it";
@@ -590,8 +619,10 @@ void FarmDockWidget::on_pushButton_clicked()
 {
     int splitAttacks = ui->spinBox_split_rounds->value();
     int killAttacks = ui->spinBox_kill_rounds->value();
+    int farmAttacks = ui->spinBox_farm_rounds->value();
     killMessage = "";
     splitMessage = "";
+    farmMessage = "";
     splitWeapon = this->ui->lineEdit_split->text();
     killWeapon = this->ui->lineEdit_kill->text();
 
@@ -600,6 +631,7 @@ void FarmDockWidget::on_pushButton_clicked()
     cout<<"Farming with splitWeapon: "<<splitWeapon.toStdString()<<" and killWEapon: "<<killWeapon.toStdString()<<endl;
     cout<<"Will run commands: >"<<splitMessage.toStdString()<<"< "<<endl;
     cout<<"Will run commands: >"<<killMessage.toStdString()<<"< "<<endl;
+    cout<<"Will run commands: >"<<farmMessage.toStdString()<<"< "<<endl;
 
 
     splitWeapon = splitWeapon.trimmed();
@@ -614,11 +646,11 @@ void FarmDockWidget::on_pushButton_clicked()
 
     refill();
 
-    if( splitAttacks <= 0 || killAttacks <= 0){
+    if( splitAttacks <= 0 && killAttacks <= 0 && farmAttacks <= 0){
         return;
     }
-    if( ui->checkBox_split->isChecked() || ui->checkBox_kill->isChecked()){
 
+    if( ui->checkBox_split->isChecked() || ui->checkBox_kill->isChecked() || ui->checkBox_farm->isChecked()){
 
         while(running){
             if( ui->checkBox_split->isChecked()){
@@ -626,6 +658,9 @@ void FarmDockWidget::on_pushButton_clicked()
             }
             if( ui->checkBox_kill->isChecked()){
                 farm(killWeapon, killMessage, killAttacks);
+            }
+            if( ui->checkBox_farm->isChecked()){
+                farm(empty, farmMessage, farmAttacks);
             }
         }
     }
@@ -751,5 +786,47 @@ void FarmDockWidget::on_pushButton_2_clicked()
     pb_start();
     cout<<"clicked : "<<ui->comboBox->currentText().toStdString()<<endl;
     QString current_text = ui->comboBox->currentText();
-    loot(current_text);
+    loot(current_text, false);
+}
+
+void FarmDockWidget::on_pushButton_3_clicked()
+{
+    try{
+        pb_start();
+        send_and_expect("E", "want to write with?");
+        send_and_expect("-", empty);
+        if( message.contains("You write in the dust with your fingers" )){
+
+        }else if(message.contains("Do you want to add to the current" )){
+            send_and_expect("y", "add to the writing");
+        }
+        if( message.contains(more)){
+            send_and_expect(enter_command, "in the dust");
+            send_and_expect("Elbereth", empty);
+            send_and_expect(enter_command, empty);
+        }
+    }catch(int e){
+        cout<<"Exception is"<<e<<endl;
+
+    }
+
+}
+
+void FarmDockWidget::on_checkBox_toggled(bool checked)
+{
+     ui->checkBox_pray->setEnabled(checked);
+
+}
+
+void FarmDockWidget::on_manualFarmButton_clicked()
+{
+    if( this->ui->manualFarmText->text().length() <= 0 ){
+        return;
+    }
+    try{
+        pb_start();
+        send_and_expect(this->ui->manualFarmText->text(), empty);
+    }catch(int e){
+        cout<<"Exception is"<<e<<endl;
+    }
 }

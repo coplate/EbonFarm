@@ -28,10 +28,11 @@ private:
     void fail_abort(std::string reason);
     void fail_stop(std::string reason);
     void farm(const QString current_weapon, const QString &attack_command, int rounds);
-    void  refill();
+    void  getMessage();
     bool  eat();
-    bool  loot(const QString &itemClass=QString("?"));
+    bool  loot(const QString &itemClass=QString("?"), bool farm=false);
     bool  offer();
+    void  refill();
     bool send_and_expect(const QString &send, const QString &expect);
     void pb_start();
 signals:
@@ -43,6 +44,12 @@ private slots:
    void on_stopButton_clicked();
 
    void on_pushButton_2_clicked();
+
+   void on_pushButton_3_clicked();
+
+   void on_checkBox_toggled(bool checked);
+
+   void on_manualFarmButton_clicked();
 
 public slots:
    void alert_tiles_finished();
